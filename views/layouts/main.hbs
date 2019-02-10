@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project Manager</title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+
+<body>
+    <div>
+        
+        <div id="container">
+            <header>
+
+
+        <div class="nav">
+        <ul>
+            {{#if currentUser}}
+            {{#if isAdmin}}
+            <li><a href="/">Home</a></li>
+            <li><a href="/distributeProjects">Projects</a></li>
+            <li><a href="/distributeUsers">Teams</a></li>
+            <li><a href="/createTeam">Create Team</a></li>
+            <li><a href="/createProject">Create Project</a></li>
+            <div class="right">
+                <li>Welcome, {{currentUser.username}}!</li>
+                {{!-- <li><a href="/profile/{{currentUser._id}}">Profile</a></li> --}}
+                <li>
+                    <form id="logout-form1" action="/logout" method="POST"></form>
+                    <a href="javascript:document.getElementById('logout-form1').submit()">Logout</a>
+                </li>
+            </div>
+            {{else}}
+            <li><a href="/">Home</a></li>
+            <li><a href="/allProjects">Projects</a></li>
+            <li><a href="/allTeams">Teams</a></li>
+            <div class="right">
+                <li>Welcome, {{currentUser.username}}!</li>
+                <li><a href="/profile/{{currentUser._id}}">Profile</a></li>
+                <li>
+                    <form id="logout-form2" action="/logout" method="post"></form>
+                    <a href="javascript:document.getElementById('logout-form2').submit()">Logout</a>
+                </li>
+            </div>
+            {{/if}}
+            {{else}}
+            <li><a href="/">Home</a></li>
+            <div class="right">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </div>
+            {{/if}}
+
+        </ul>
+        </div>
+               
+            </header>
+            <main>
+                   {{#if globalError}}
+                        <span>{{globalError}}</span> 
+                   {{/if}} 
+                  {{{body}}}
+            </main>
+            <footer>
+                AlekBorisov ExpressJS &copy; 2019
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
